@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 
-import { Section, PhoneInputForm, ContactList, Filter } from 'components';
+import { PhoneInputForm, ContactsList, Filter } from 'components';
+import { Section, Header, Title } from './Section/Section.styled';
 import initialContacts from '../data/contacts.json';
 
 export class App extends Component {
   state = {
     contacts: initialContacts,
     filter: '',
-    name: '',
-    number: '',
   };
 
   addContact = ({ name, number }) => {
@@ -37,9 +36,11 @@ export class App extends Component {
     console.log('normalizedFilter :>> ', normalizedFilter);
     return (
       <Section>
+        <Header>Phonebook</Header>
         <PhoneInputForm onSubmit={this.addContact} />
+        <Title>Contacts</Title>
         <Filter onChange={this.changeFilter} value={filter} />
-        <ContactList contacts={visibleContacts} />
+        <ContactsList contacts={visibleContacts} />
       </Section>
     );
   }

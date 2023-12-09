@@ -1,10 +1,6 @@
 import styled from '@emotion/styled';
 
 export const InputFormContainer = styled.form`
-  width: ${props => props.theme.spacing(200)};
-  margin-left: auto;
-  margin-right: auto;
-
   background-color: ${props => props.theme.colors.black};
   border-radius: ${props => props.theme.spacing(1.5)};
 
@@ -29,7 +25,7 @@ export const FormField = styled.label`
 
   color: ${props => props.theme.colors.white};
   font-weight: 600;
-  font-size: ${props => props.theme.fontSizes.large};
+  font-size: ${props => props.theme.fontSizes.small};
   letter-spacing: ${props => props.theme.spacing(0.25)};
 
   background-color: ${props => props.theme.colors.gray};
@@ -43,7 +39,7 @@ export const FormInput = styled.input`
 
   color: ${props => props.theme.colors.light};
   font-weight: 600;
-  font-size: ${props => props.theme.fontSizes.large};
+  font-size: ${props => props.theme.fontSizes.small};
   letter-spacing: ${props => props.theme.spacing(0.25)};
   line-height: inherit;
 
@@ -78,7 +74,7 @@ export const FormButton = styled.button`
 
   color: ${props => props.theme.colors.accent1};
   font-weight: 600;
-  font-size: ${props => props.theme.fontSizes.large};
+  font-size: ${props => props.theme.fontSizes.small};
   letter-spacing: ${props => props.theme.spacing(0.25)};
 
   background-color: ${props => props.theme.colors.gray};
