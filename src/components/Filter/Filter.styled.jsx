@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const InputFormContainer = styled.form`
+export const FilterSection = styled.section`
   width: ${props => props.theme.spacing(200)};
   margin-left: auto;
   margin-right: auto;

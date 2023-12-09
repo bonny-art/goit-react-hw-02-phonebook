@@ -31,6 +31,8 @@ export class PhoneInputForm extends Component {
   };
 
   render() {
+    const { name, number } = this.state;
+
     return (
       <InputFormContainer onSubmit={this.handleSubmit}>
         <FormField>
@@ -40,7 +42,7 @@ export class PhoneInputForm extends Component {
             name="name"
             required
             placeholder="Enter contact's name"
-            value={this.state.name}
+            value={name}
             onChange={this.handleChange}
           />
         </FormField>
@@ -51,7 +53,7 @@ export class PhoneInputForm extends Component {
             name="number"
             required
             placeholder="Enter contact's phone number"
-            value={this.state.number}
+            value={number}
             onChange={this.handleChange}
           />
         </FormField>
