@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import { PhoneInputForm, ContactsList, Filter } from 'components';
 import { Section, Header, Title } from './Section/Section.styled';
@@ -17,9 +18,14 @@ export class App extends Component {
       name,
       number,
     };
-    this.setState(prevState => ({
-      contacts: [contact, ...prevState.contacts],
-    }));
+
+    this.setState(prevState =>
+      prevState.contacts.find(({ name }) => name === contact.name)
+        ? Notify.failure(`${contact.name} is already in contacts.`)
+        : {
+            contacts: [contact, ...prevState.contacts],
+          }
+    );
   };
 
   changeFilter = e => {
@@ -33,7 +39,7 @@ export class App extends Component {
     const visibleContacts = contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
-    console.log('normalizedFilter :>> ', normalizedFilter);
+
     return (
       <Section>
         <Header>Phonebook</Header>
