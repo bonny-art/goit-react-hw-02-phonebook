@@ -7,19 +7,27 @@ import {
   FormButton,
 } from './PhoneInputForm.styled';
 
+const INITIAL_STATE = {
+  name: '',
+  number: '',
+};
+
 export class PhoneInputForm extends Component {
-  state = {
-    name: '',
-  };
+  state = { ...INITIAL_STATE };
 
   handleChange = e => {
-    this.setState({ name: e.currentTarget.value });
+    const { name, value } = e.currentTarget;
+    this.setState({ [name]: value });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state.name);
-    this.setState({ name: '' });
+    this.props.onSubmit({ ...this.state });
+    this.reset();
+  };
+
+  reset = () => {
+    this.setState({ ...INITIAL_STATE });
   };
 
   render() {
@@ -33,6 +41,17 @@ export class PhoneInputForm extends Component {
             required
             placeholder="Enter contact's name"
             value={this.state.name}
+            onChange={this.handleChange}
+          />
+        </FormField>
+        <FormField>
+          Number:
+          <FormInput
+            type="tel"
+            name="number"
+            required
+            placeholder="Enter contact's phone number"
+            value={this.state.number}
             onChange={this.handleChange}
           />
         </FormField>

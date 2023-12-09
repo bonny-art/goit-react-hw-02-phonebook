@@ -18,8 +18,7 @@ export const ContactListContainer = styled.ul`
 
 export const Contact = styled.li`
   display: flex;
-  gap: ${props => props.theme.spacing(6)};
-  align-items: center;
+  justify-content: space-between;
 
   padding: ${props => props.theme.spacing(4)} ${props => props.theme.spacing(6)};
   overflow: hidden;
@@ -44,6 +43,11 @@ export const Name = styled.p`
   font-weight: 600;
   font-size: ${props => props.theme.fontSizes.large};
   letter-spacing: ${props => props.theme.spacing(0.25)};
+`;
 
-  margin-bottom: 0;
+export const Number = styled.p`
+  color: ${props => props.theme.colors.white};
+  font-weight: 600;
+  font-size: ${props => props.theme.fontSizes.medium};
+  letter-spacing: ${props => props.theme.spacing(0.25)};
 `;

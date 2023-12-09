@@ -8,13 +8,14 @@ export class App extends Component {
   state = {
     contacts: initialContacts,
     name: '',
+    number: '',
   };
 
-  addContact = name => {
+  addContact = ({ name, number }) => {
     const contact = {
       id: nanoid(),
       name,
-      number: '111-11-11',
+      number,
     };
     this.setState(prevState => ({
       contacts: [contact, ...prevState.contacts],

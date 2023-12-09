@@ -25,7 +25,7 @@ export const FormField = styled.label`
   overflow: hidden;
   border-radius: ${props => props.theme.spacing(1)};
 
-  color: ${props => props.theme.colors.accent1};
+  color: ${props => props.theme.colors.white};
   font-weight: 600;
   font-size: ${props => props.theme.fontSizes.large};
   letter-spacing: ${props => props.theme.spacing(0.25)};
