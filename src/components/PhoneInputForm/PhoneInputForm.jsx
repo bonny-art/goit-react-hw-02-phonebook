@@ -22,7 +22,7 @@ export class PhoneInputForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit({ ...this.state, name: this.state.name.trim() });
+    this.props.onSubmita({ ...this.state, name: this.state.name.trim() });
     this.reset();
   };
 

@@ -4,11 +4,10 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import { PhoneInputForm, ContactsList, Filter } from 'components';
 import { Section, Header, Title } from './Section/Section.styled';
-import initialContacts from '../data/contacts.json';
 
 export class App extends Component {
   state = {
-    contacts: initialContacts,
+    contacts: [],
     filter: '',
   };
 
@@ -19,13 +18,18 @@ export class App extends Component {
       number,
     };
 
-    this.setState(prevState =>
-      prevState.contacts.find(({ name }) => name === contact.name.trim())
-        ? Notify.failure(`${contact.name} is already in contacts.`)
-        : {
-            contacts: [contact, ...prevState.contacts],
-          }
+    const isExist = this.state.contacts.find(
+      ({ name }) => name === contact.name.trim()
     );
+
+    if (isExist) {
+      Notify.failure(`${contact.name} is already in contacts.`);
+      return;
+    }
+
+    return this.setState(prevState => ({
+      contacts: [contact, ...prevState.contacts],
+    }));
   };
 
   deleteContact = contactId => {
@@ -49,7 +53,7 @@ export class App extends Component {
     return (
       <Section>
         <Header>Phonebook</Header>
-        <PhoneInputForm onSubmit={this.addContact} />
+        <PhoneInputForm onSubmita={this.addContact} />
         <Title>Contacts</Title>
         <Filter onChange={this.changeFilter} value={filter} />
         <ContactsList
