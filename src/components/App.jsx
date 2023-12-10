@@ -20,12 +20,18 @@ export class App extends Component {
     };
 
     this.setState(prevState =>
-      prevState.contacts.find(({ name }) => name === contact.name)
+      prevState.contacts.find(({ name }) => name === contact.name.trim())
         ? Notify.failure(`${contact.name} is already in contacts.`)
         : {
             contacts: [contact, ...prevState.contacts],
           }
     );
+  };
+
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(({ id }) => contactId !== id),
+    }));
   };
 
   changeFilter = e => {
@@ -46,7 +52,10 @@ export class App extends Component {
         <PhoneInputForm onSubmit={this.addContact} />
         <Title>Contacts</Title>
         <Filter onChange={this.changeFilter} value={filter} />
-        <ContactsList contacts={visibleContacts} />
+        <ContactsList
+          contacts={visibleContacts}
+          onDeleteContact={this.deleteContact}
+        />
       </Section>
     );
   }

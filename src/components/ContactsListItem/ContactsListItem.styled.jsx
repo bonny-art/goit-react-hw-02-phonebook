@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 
 export const Contact = styled.li`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 8fr 5fr 1fr;
+  align-items: center;
 
   padding: ${props => props.theme.spacing(4)} ${props => props.theme.spacing(6)};
   overflow: hidden;
@@ -34,4 +35,20 @@ export const Number = styled.p`
   font-weight: 600;
   font-size: ${props => props.theme.fontSizes.small};
   letter-spacing: ${props => props.theme.spacing(0.25)};
+`;
+
+export const DeleteButton = styled.button`
+  justify-self: end;
+
+  width: ${props => props.theme.spacing(6)};
+  height: ${props => props.theme.spacing(6)};
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${props => props.theme.colors.light};
+
+  color: ${props => props.theme.colors.black};
+  font-weight: 600;
+  font-size: ${props => props.theme.fontSizes.medium};
 `;

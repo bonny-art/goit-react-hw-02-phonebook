@@ -15,8 +15,8 @@ export const FilterSection = styled.section`
 `;
 
 export const FormField = styled.label`
-  display: flex;
-  gap: ${props => props.theme.spacing(6)};
+  display: grid;
+  grid-template-columns: ${props => props.theme.spacing(20)} 5fr;
   align-items: center;
 
   padding: ${props => props.theme.spacing(4)} ${props => props.theme.spacing(6)};
