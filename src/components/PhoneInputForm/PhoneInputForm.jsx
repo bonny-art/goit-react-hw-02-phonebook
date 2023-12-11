@@ -17,15 +17,18 @@ const INITIAL_STATE = {
 
 const namePattern =
   "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
-// const numberPattern =
-//   '+?d{1,4}?[ .-s]?(?d{1,3}?)?[ .-s]?d{1,4}[ .-s]?d{1,4}[ .-s]?d{1,9}';
+const numberPattern =
+  /^\+?\d{1,4}[ .-]?\(?\d{1,3}?\)?[ .-]?\d{1,4}[ .-]?\d{1,4}[ .-]?\d{1,9}$/;
 
 const schema = yup.object().shape({
   name: yup
     .string()
     .matches(namePattern, 'Name must contain only letters')
     .required('Name is required'),
-  number: yup.string().required('Phone number is required'),
+  number: yup
+    .string()
+    .matches(numberPattern, 'Write a valid phone number')
+    .required('Phone number is required'),
 });
 
 export const PhoneInputForm = ({ onSubmit }) => {
