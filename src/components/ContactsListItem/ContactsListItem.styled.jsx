@@ -9,13 +9,11 @@ export const Contact = styled.li`
   overflow: hidden;
   border-radius: ${props => props.theme.spacing(1)};
 
-  cursor: pointer;
+  background-color: ${props => props.theme.colors.gray};
 
   transition-property: transform, box-shadow;
   transition-duration: 0.25s;
   transition-timing-function: ${props => props.theme.animation.cubicBezier};
-
-  background-color: ${props => props.theme.colors.gray};
 
   &:hover {
     transform: scale(1.02);
@@ -47,6 +45,8 @@ export const DeleteButton = styled.button`
   justify-content: center;
   align-items: center;
   background-color: ${props => props.theme.colors.light};
+
+  cursor: pointer;
 
   color: ${props => props.theme.colors.black};
   font-weight: 600;

@@ -53,7 +53,7 @@ export class App extends Component {
     return (
       <Section>
         <Header>Phonebook</Header>
-        <PhoneInputForm onSubmita={this.addContact} />
+        <PhoneInputForm onSubmit={this.addContact} />
         <Title>Contacts</Title>
         <Filter onChange={this.changeFilter} value={filter} />
         <ContactsList

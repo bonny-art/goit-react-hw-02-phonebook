@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import { Form, Field } from 'formik';
 
-export const InputFormContainer = styled.form`
+export const InputFormContainer = styled(Form)`
   background-color: ${props => props.theme.colors.black};
   border-radius: ${props => props.theme.spacing(1.5)};
 
@@ -15,12 +16,13 @@ export const InputFormContainer = styled.form`
 `;
 
 export const FormField = styled.label`
+  position: relative;
   display: grid;
   grid-template-columns: ${props => props.theme.spacing(20)} 5fr;
   align-items: center;
 
   padding: ${props => props.theme.spacing(4)} ${props => props.theme.spacing(6)};
-  overflow: hidden;
+
   border-radius: ${props => props.theme.spacing(1)};
 
   color: ${props => props.theme.colors.white};
@@ -31,7 +33,7 @@ export const FormField = styled.label`
   background-color: ${props => props.theme.colors.gray};
 `;
 
-export const FormInput = styled.input`
+export const FormInput = styled(Field)`
   width: 100%;
   padding: ${props => props.theme.spacing(1)} ${props => props.theme.spacing(2)};
   border-radius: ${props => props.theme.spacing(1)};
@@ -82,4 +84,23 @@ export const FormButton = styled.button`
   &:hover {
     color: ${props => props.theme.colors.accent2};
   }
+`;
+
+export const ErrorMessageStyled = styled.button`
+  position: absolute;
+  top: ${props => props.theme.spacing(2.5)};
+  right: ${props => props.theme.spacing(2.5)};
+
+  padding: ${props => props.theme.spacing(3)} ${props => props.theme.spacing(5)};
+
+  border: ${props => props.theme.spacing(0.25)} solid
+    ${props => props.theme.colors.light};
+  border-radius: ${props => props.theme.spacing(1)};
+
+  color: ${props => props.theme.colors.accent2};
+  font-weight: 600;
+  font-size: ${props => props.theme.fontSizes.small};
+  letter-spacing: ${props => props.theme.spacing(0.25)};
+
+  background-color: ${props => props.theme.colors.dark};
 `;

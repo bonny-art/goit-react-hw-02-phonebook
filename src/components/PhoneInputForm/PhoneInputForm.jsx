@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Formik, ErrorMessage } from 'formik';
+import * as yup from 'yup';
 
 import {
   InputFormContainer,
   FormField,
   FormInput,
   FormButton,
+  ErrorMessageStyled,
 } from './PhoneInputForm.styled';
 
 const INITIAL_STATE = {
@@ -12,29 +15,32 @@ const INITIAL_STATE = {
   number: '',
 };
 
-export class PhoneInputForm extends Component {
-  state = { ...INITIAL_STATE };
+const namePattern =
+  "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
+// const numberPattern =
+//   '+?d{1,4}?[ .-s]?(?d{1,3}?)?[ .-s]?d{1,4}[ .-s]?d{1,4}[ .-s]?d{1,9}';
 
-  handleChange = e => {
-    const { name, value } = e.currentTarget;
-    this.setState({ [name]: value });
+const schema = yup.object().shape({
+  name: yup
+    .string()
+    .matches(namePattern, 'Name must contain only letters')
+    .required('Name is required'),
+  number: yup.string().required('Phone number is required'),
+});
+
+export const PhoneInputForm = ({ onSubmit }) => {
+  const handleSubmit = (values, { resetForm }) => {
+    onSubmit({ ...values });
+    resetForm();
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.onSubmita({ ...this.state, name: this.state.name.trim() });
-    this.reset();
-  };
-
-  reset = () => {
-    this.setState({ ...INITIAL_STATE });
-  };
-
-  render() {
-    const { name, number } = this.state;
-
-    return (
-      <InputFormContainer onSubmit={this.handleSubmit}>
+  return (
+    <Formik
+      initialValues={INITIAL_STATE}
+      onSubmit={handleSubmit}
+      validationSchema={schema}
+    >
+      <InputFormContainer>
         <FormField>
           Name:
           <FormInput
@@ -42,9 +48,8 @@ export class PhoneInputForm extends Component {
             name="name"
             required
             placeholder="Enter contact's name"
-            value={name}
-            onChange={this.handleChange}
           />
+          <ErrorMessage name="name" component={ErrorMessageStyled} />
         </FormField>
         <FormField>
           Number:
@@ -53,12 +58,11 @@ export class PhoneInputForm extends Component {
             name="number"
             required
             placeholder="Enter contact's phone number"
-            value={number}
-            onChange={this.handleChange}
           />
+          <ErrorMessage name="number" component={ErrorMessageStyled} />
         </FormField>
         <FormButton type="submit">Add</FormButton>
       </InputFormContainer>
-    );
-  }
-}
+    </Formik>
+  );
+};
